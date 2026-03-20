@@ -115,8 +115,11 @@ def load_model() -> bool:
         with open(config_path, "r") as f:
             model_config = json.load(f)
 
-        if model_config.get("type") != "ONNX1":
-            raise ValueError("Unsupported model type. Expected ONNX1.")
+        model_type = model_config.get("type")
+        if model_type not in ("ONNX1", "ONNX2"):
+            raise ValueError(
+                f"Unsupported model type. Expected ONNX1 or ONNX2, got {model_type}."
+            )
 
         # Download model and voices files
         model_path = hf_hub_download(

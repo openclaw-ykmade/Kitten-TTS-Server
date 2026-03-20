@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN add-apt-repository --yes ppa:deadsnakes/ppa && apt-get update --yes --quiet
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-recommends \
-    python3.10 \
+    python3.10 python3.10-dev \
     pip
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 999 \

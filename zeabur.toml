@@ -1,0 +1,11 @@
+[[build]
+builder = "docker"
+
+[env]
+PORT = "8005"
+HOST = "0.0.0.0"
+PYTHONUNBUFFERED = "1"
+HF_HOME = "/app/hf_cache"
+
+[ports]
+web = 8005

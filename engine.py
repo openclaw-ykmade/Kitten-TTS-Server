@@ -346,7 +346,7 @@ def synthesize(
             # --- I/O Binding Path for GPU using NumPy ---
             # Create standard NumPy arrays on the CPU first.
             input_ids_np = np.array([tokens], dtype=np.int64)
-            ref_s_np = voices_data[voice].astype(np.float32)  # Ensure correct type
+            ref_s_np = voices_data[voice].reshape(1, -1).astype(np.float32)
             speed_array_np = np.array([speed], dtype=np.float32)
 
             # Create OrtValues from the NumPy arrays. I/O binding will handle the copy to GPU.
@@ -382,7 +382,7 @@ def synthesize(
         else:
             # --- Standard Path for CPU ---
             input_ids = np.array([tokens], dtype=np.int64)
-            ref_s = voices_data[voice]
+            ref_s = voices_data[voice].reshape(1, -1)
             speed_array = np.array([speed], dtype=np.float32)
 
             onnx_inputs = {
